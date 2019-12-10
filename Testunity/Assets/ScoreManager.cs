@@ -6,22 +6,33 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
 
-    public GameObject score_object = null; // Textオブジェクト
-    public int score_num = 0; // スコア変数
+    GameObject score_object; // Textオブジェクト
+    float count;
 
-    // 初期化
+
+  
     void Start()
     {
+        count = 0;
     }
 
-    // 更新
+    public void OnClick()
+    {
+        count = 0;
+        this.score_object = GameObject.Find("Text");
+
+    }
+
     void Update()
     {
-        // オブジェクトからTextコンポーネントを取得
-        Text score_text = score_object.GetComponent<Text>();
-        // テキストの表示を入れ替える
-        score_text.text = "Score:" + score_num;
+        if (count < 100f)
+        {
+            count += Time.deltaTime;
+            this.score_object.GetComponent<Text>().text = "Score" +
+                this.count.ToString("F1");
+            
+        }
 
-        score_num += 2; // とりあえず1加算し続けてみる
     }
+
 }
