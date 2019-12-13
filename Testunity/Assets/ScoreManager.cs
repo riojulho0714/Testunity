@@ -5,34 +5,42 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    public Text countText;
+    private int count;
+    private bool flg;
 
-    GameObject score_object; // Textオブジェクト
-    float count;
-
-
-  
     void Start()
     {
         count = 0;
+        flg = true;
     }
 
     public void OnClick()
     {
-        count = 0;
-        this.score_object = GameObject.Find("Text");
-
+        flg = false;
     }
 
     void Update()
     {
-        if (count < 100f)
+        if (!flg)
         {
-            count += Time.deltaTime;
-            this.score_object.GetComponent<Text>().text = "Score" +
-                this.count.ToString("F1");
-            
+            StartCoroutine("Count");
         }
-
     }
 
+    private IEnumerator Count()
+    {
+        while(count < 100.0f)
+        {
+            flg = true;
+
+            yield return new WaitForSeconds(0.05f);
+            count++;
+
+            countText.text = count.ToString();
+
+            flg = false;
+
+        }
+    }
 }
