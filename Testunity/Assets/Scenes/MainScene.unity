@@ -410,6 +410,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countText: {fileID: 457556945}
+  count: 0
+  flg: 0
 --- !u!4 &967078770
 Transform:
   m_ObjectHideFlags: 0

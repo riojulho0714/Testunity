@@ -19,5 +19,4 @@ public class Buttonscript : MonoBehaviour
     {
         GetComponent<Button>().interactable = false;
     }
-
 }

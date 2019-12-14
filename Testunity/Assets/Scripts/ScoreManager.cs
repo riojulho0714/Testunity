@@ -7,41 +7,25 @@ public class ScoreManager : MonoBehaviour
 {
     public Text countText;
     private int count;
-    private bool flg;
 
     void Start()
     {
         count = 0;
-        flg = true;
     }
 
     public void OnClick()
     {
-        flg = false;
+        StartCoroutine("Count");
     }
 
-   
-    void Update()
+    IEnumerator Count()
     {
-
-        if (!flg)
+        while (count < 100.0f)
         {
-            StartCoroutine("Count");
-        }
-    }
-
-    private IEnumerator Count()
-    {
-        while(count < 100.0f)
-        {
-            flg = true;
-
             yield return new WaitForSeconds(0.05f);
             count++;
 
             countText.text = count.ToString();
-
-            flg = false;
 
         }
     }
