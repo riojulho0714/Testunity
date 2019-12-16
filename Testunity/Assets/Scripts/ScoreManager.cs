@@ -1,32 +1,47 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
     public Text countText;
     private int count;
+    private bool flg;
 
     void Start()
     {
         count = 0;
+        flg = false;
     }
 
     public void OnClick()
     {
-        StartCoroutine("Count");
+        flg = true;
     }
 
-    IEnumerator Count()
+    void Update()
     {
-        while (count < 100.0f)
+        if (flg)
         {
-            yield return new WaitForSeconds(0.05f);
-            count++;
+            if (count < 100)
+            {
 
-            countText.text = count.ToString();
+                count++;
 
+                countText.text = count.ToString();
+            }
+            else if(count >= 100)
+            {
+                flg = false;
+            }
         }
     }
+
 }
+
+  
+
+
+        
+
+        
+        
